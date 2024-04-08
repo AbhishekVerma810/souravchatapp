@@ -1,0 +1,7 @@
+{
+  "name": "chatingapp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

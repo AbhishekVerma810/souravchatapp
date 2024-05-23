@@ -1,0 +1,109 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Login
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-label>Login</ion-label>
+  <ion-item>
+    <ion-label position="floating">Username</ion-label>
+    <ion-input type="email" [(ngModel)]="username"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Password</ion-label>
+    <ion-input type="password" [(ngModel)]="password"></ion-input>
+  </ion-item>
+
+  <ion-button expand="block" (click)="login()">Login</ion-button>
+</ion-card>
+</ion-content> -->
+
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button class="backbtn" routerLink="/welcome" routerDirection="back">
+        <img src="../../assets/back.svg" />
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+
+
+<ion-content [fullscreen]="true">
+  <div class="circleBase type2 circle1"></div>
+  <div class="circleBase type1"></div>
+  <div class="circleBase type2 circle2"></div>
+
+  <ion-label class="welcomeMessage"> 
+    <ion-text color="white">
+      <p style="color: white;">Log In!</p>
+    </ion-text>
+  </ion-label> 
+
+  <ion-icon 
+    name="arrow-back-outline" 
+    color="white"
+    class="backButton"
+    routerLink="/home">
+  </ion-icon>
+
+  <form [formGroup]="signupForm">
+    <ion-list lines="none" class="ion-margin ion-padding ion-text-center">
+       <ion-item class="ion-margin-vertical">
+        <ion-icon 
+          name="mail-outline" slot="end" color="medium">
+        </ion-icon>
+        <ion-input 
+          formControlName="email" 
+          placeholder="Enter Email Address">
+        </ion-input>
+      </ion-item>
+      <ion-text 
+        class="ion-text-left"
+        color="danger"
+        *ngIf="!signupForm.get('email').valid && signupForm.get('email').touched">
+        <p class="error">*Please enter proper Email Address</p>
+      </ion-text>
+
+      <ion-item class="ion-margin-vertical">
+        <ion-icon (click)="onChange()"
+          [name]="isTypePassword ? 'lock-closed-outline' : 'lock-open-outline'" 
+          slot="end" 
+          [color]="isTypePassword ? 'medium' : 'primary'">
+        </ion-icon>
+        <ion-input 
+          formControlName="password" 
+          [type]="isTypePassword ? 'password' : 'text'"
+          placeholder="Enter Password">
+        </ion-input>
+      </ion-item>
+      <ion-text 
+        class="ion-text-left"
+        color="danger"
+        *ngIf="!signupForm.get('password').valid && signupForm.get('password').touched">
+        <p class="error" *ngIf="signupForm.get('password').invalid && signupForm.get('password').errors?.['required']">
+          Please enter your Password
+        </p>
+        
+      </ion-text>
+
+      <ion-row class="ion-margin-vertical"  style="float: right;">
+        <ion-col size="12" class="alignItems">
+          <div align=rigth>
+            <ion-note [routerLink]="['/forgot-password-page']">Reset Password!</ion-note>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-button style="--background: #162e58; height: 46px;" shape="round"  (click)="onSubmit()" [routerLink]="['/apptabs/tabs/home']">Log In</ion-button>
+      <p class="buttom_text">didn't have an account?<span [routerLink]="['/signup']">Sign Up</span></p>
+    </ion-list>
+  </form>
+</ion-content>

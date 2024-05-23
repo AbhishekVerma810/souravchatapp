@@ -1,0 +1,78 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>Video Call</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cancelCall()">Cancel</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item class="remote-video-container">
+    <video id="remoteVideo" autoplay playsinline></video>
+  </ion-item>
+  <ion-item class="local-video-container">
+    <video id="localVideo" autoplay playsinline></video>
+  </ion-item>
+  <ion-fab vertical="bottom"  color="danger" horizontal="center" slot="fixed">
+    <ion-fab-button style="--background: red;">
+      <ion-icon name="videocam-off-outline"></ion-icon>
+    </ion-fab-button>
+   </ion-fab>
+</ion-content> -->
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Ionic Video Chat
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div id="errorMsg"></div>
+  <video id="partner-video" (click)="swapVideo('my-video')" autoplay playsinline
+    [ngClass]="{'top-video': topVideoFrame === 'partner-video', 'main-video': topVideoFrame != 'partner-video'}">
+  </video>
+  <video id="my-video" (click)="swapVideo('partner-video')" autoplay playsinline
+    [ngClass]="{'top-video': topVideoFrame === 'my-video', 'main-video': topVideoFrame != 'my-video'}" >
+  </video>
+</ion-content> -->
+
+
+
+<ion-header style="display: none;">
+  <ion-toolbar>
+    <ion-title>
+      Ionic Video Chat
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div id="errorMsg"></div>
+
+
+  <div class="video-call-container">
+  <video id="partner-video" (click)="swapVideo('my-video')" autoplay playsinline
+  class="remote-video">
+  </video>
+  <video id="my-video" (click)="swapVideo('partner-video')" autoplay playsinline
+    class="local-video" >
+  </video>
+  <ion-button class="controls" (click)="disconnect()">End</ion-button>
+</div>
+
+  <ion-row nowrap>
+    <ion-button (click)="login()">Login As: </ion-button>
+    <ion-item>
+      <ion-input type="text" [(ngModel)]="userId" placeholder="enter your nick name"></ion-input>
+    </ion-item>
+  </ion-row>
+
+  <ion-row nowrap>
+    <ion-button (click)="call()">Call To: </ion-button>
+    <ion-item>
+      <ion-input type="text" [(ngModel)]="partnerId" placeholder="your partner nick name"></ion-input>
+    </ion-item>
+  </ion-row>  
+</ion-content>

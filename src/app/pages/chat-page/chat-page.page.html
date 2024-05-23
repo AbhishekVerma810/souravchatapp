@@ -1,0 +1,109 @@
+<!-- <ion-header mode="md">
+  <ion-toolbar>
+    <ion-back-button slot="start"></ion-back-button>
+    <ion-item lines="none">
+      <ion-avatar slot="start">
+        <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+      </ion-avatar>
+      <ion-label>{{item.name}}</ion-label>
+    </ion-item>
+  </ion-toolbar>
+</ion-header>
+<ion-content mode="md">
+<ion-item 
+  lines="none" 
+  *ngFor="let item of formattedMessages" 
+  [ngClass]="item?.senderId != userInfo.id ? 'sender' : 'user'">
+  <ion-label 
+    [slot]="item?.senderId == userInfo.id ? 'end' : 'start'" 
+    class="ion-text-wrap">
+    <ion-text>{{item?.message}}</ion-text>
+    <ion-note>
+      <small>{{item?.createdAt | date : 'HH:mm'}}</small>
+      <ion-icon [color]="item?.senderId === id ? 'light' : 'primary'" name="checkmark-done-outline"></ion-icon>
+    </ion-note>
+  </ion-label>
+</ion-item>
+</ion-content>
+<ion-footer lines="none">
+  <ion-toolbar color="light"  lines="none">
+    <ion-textarea 
+      lines="none"
+      autoGrow 
+      rows="1" 
+      placeholder="Send message" 
+      class="ion-text-center" 
+      [(ngModel)]="text_message">
+    </ion-textarea>
+    <ion-buttons slot="end">
+      <ion-fab-button *ngIf="!isLoading" size="small" color="primary" (click)="submitMessage()">
+        <ion-icon name="send"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button *ngIf="isLoading" size="small" color="primary">
+        <ion-spinner name="crescent" color="white"></ion-spinner>
+      </ion-fab-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer> -->
+
+<ion-header mode="md">
+  <ion-toolbar>
+    <ion-back-button slot="start"></ion-back-button>
+    <ion-item lines="none">
+      <ion-avatar slot="start">
+        <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+      </ion-avatar>
+      <ion-label>{{ userdata.name }}</ion-label>
+    </ion-item>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content mode="md">
+  <ion-item lines="none" *ngFor="let item of formattedMessages"
+    [ngClass]="item?.senderID === ueserID ? 'user' : 'sender'">
+    <ion-label [slot]="item?.senderID == ueserID ? 'start' : 'end'" class="ion-text-wrap">
+      <ion-text *ngIf="item?.message">{{ item?.message }}</ion-text>
+      <img *ngIf="item?.images" [src]="item.images" />
+      <video *ngIf="item?.file" controls>
+        <source [src]="item?.file" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <ion-note>
+        <small>{{ item?.createdAt | date : 'HH:mm' }}</small>
+        <ion-icon [color]="item?.senderID === ueserID ? 'light' : 'primary'" name="checkmark-done-outline"></ion-icon>
+      </ion-note>
+    </ion-label>
+  </ion-item>
+  <ion-modal #modal trigger="open-modal" [initialBreakpoint]="1" [breakpoints]="[0, 1]">
+    <ng-template>
+
+      <ion-button slot="end" (click)="modal.dismiss()">Close</ion-button>
+     
+        <input accept="image/*" type="file" id="image-input" placeholder="Upload images of incident"
+          (change)="selectedImage($event)" />
+         <input accept=".mp3,audio/*"  type="file" id="audio-input" placeholder="Upload audio"
+          multiple="multiple" (change)="selectedAudio($event)" />
+        <input accept="video/mp4,video/x-m4v,video/*"  type="file" id="video-input"
+          placeholder="Upload videos of incident" multiple="multiple" (change)="selectedVideo($event)" />
+      
+    </ng-template>
+  </ion-modal>
+</ion-content>
+<ion-footer lines="none">
+  <ion-toolbar color="light" lines="none">
+    <ion-textarea lines="none" autoGrow rows="1" placeholder="Send message" class="ion-text-center"
+      [(ngModel)]="text_message"></ion-textarea>
+    <ion-buttons slot="end">
+      <ion-fab-button *ngIf="!isLoading" size="small" color="primary" (click)="submitMessage()">
+        <ion-icon name="send"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button *ngIf="isLoading" size="small" color="primary">
+        <ion-spinner name="crescent" color="white"></ion-spinner>
+      </ion-fab-button>
+      <ion-fab-button id="open-modal" expand="block" size="small" color="primary">
+
+        <ion-icon name="attach-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

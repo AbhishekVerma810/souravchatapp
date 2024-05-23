@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Groups
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-card *ngFor="let item of groups" (click)="navigateGroupChat(item)">
+    <ion-item lines="none">
+      <ion-avatar slot="start">
+        <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+      </ion-avatar>
+      <ion-label>{{item.group.groupName}}
+      <p>hello abhi</p>
+      </ion-label>
+     </ion-item>
+  </ion-card>
+   <ion-fab   [routerLink]="['/create-group-page']">
+    <ion-fab-button>
+      <ion-icon name="person-add-outline"></ion-icon>
+    </ion-fab-button>
+   </ion-fab>
+</ion-content>
